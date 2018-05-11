@@ -1,0 +1,6 @@
+{
+  "appId": "phacitorteam.spaceinvaders.app",
+  "appName": "phaser3-capacitor-space-invaders",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

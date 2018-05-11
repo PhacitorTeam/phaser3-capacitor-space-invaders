@@ -10,7 +10,9 @@
     "Webpack"
   ],
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
     "expose-loader": "0.7.5",
+    "html-webpack-plugin": "^3.2.0",
     "ts-loader": "4.3.0",
     "typescript": "2.7.2",
     "webpack": "4.8.1",
@@ -24,7 +26,7 @@
   },
   "scripts": {
     "copy": "cp src/index.html www/index.html && cp -fR assets www && cp src/service-worker.js www/service-worker.js && cp src/manifest.json www/manifest.json && cp sw-toolbox.js www/sw-toolbox.js",
-    "dev": "webpack && npm run copy && webpack-dev-server --mode development",
+    "dev": "webpack && npm run copy && webpack-dev-server --hot --watch-poll --mode development",
     "prod": "webpack && npm run copy && webpack-dev-server --mode production",
     "build": "webpack --mode production && npm run copy && npx cap copy"
   }

@@ -9,7 +9,7 @@ import { GameOverScene } from './scenes/game-over';
 
 import { WORLD_WIDTH, WORLD_HEIGHT } from './constants';
 
-import { Plugins } from '@capacitor/core';
+import { Plugins, Capacitor } from '@capacitor/core';
 
 const config: GameConfig = {
   width: WORLD_WIDTH,
@@ -43,11 +43,16 @@ export class Game extends Phaser.Game {
 
     this.scene.start('Boot');
 
-    StatusBar.hide();
-    SplashScreen.hide();
+    console.log(Capacitor.platform);
+    if ((Capacitor.platform === 'ios') || (Capacitor.platform === 'android')) {
+      StatusBar.hide();
+      SplashScreen.hide();
+    }
 
   }
 
 }
 
 new Game(config);
+
+module['hot'].accept();
