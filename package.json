@@ -11,13 +11,14 @@
   ],
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.19",
-    "expose-loader": "0.7.5",
+    "expose-loader": "^0.7.5",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "ts-loader": "4.3.0",
-    "typescript": "2.7.2",
-    "webpack": "4.8.1",
-    "webpack-cli": "2.1.3",
-    "webpack-dev-server": "3.1.4"
+    "ts-loader": "^4.3.0",
+    "typescript": "^2.7.2",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
     "@capacitor/cli": "^1.0.0-alpha.37",
@@ -25,9 +26,12 @@
     "phaser": "3.7.1"
   },
   "scripts": {
-    "copy": "cp src/index.html www/index.html && cp -fR assets www && cp src/service-worker.js www/service-worker.js && cp src/manifest.json www/manifest.json && cp sw-toolbox.js www/sw-toolbox.js",
-    "dev": "webpack && npm run copy && webpack-dev-server --hot --watch-poll --mode development",
-    "prod": "webpack && npm run copy && webpack-dev-server --mode production",
-    "build": "webpack --mode production && npm run copy && npx cap copy"
+    "copy": "cp -fR assets www && cp src/service-worker.js www/service-worker.js && cp src/manifest.json www/manifest.json && cp sw-toolbox.js www/sw-toolbox.js",
+    "dev": "npm run watch && npm run copy && npm run start",
+    "prod": "webpack --mode production && npm run copy",
+    "build": "webpack --mode production && npm run copy && npx cap copy",
+    "serve": "npm run watch && npm run start",
+    "start": "webpack-dev-server --inline --progress --colors --watch-poll",
+    "watch": "webpack --mode development -w"
   }
 }

@@ -54,5 +54,3 @@ export class Game extends Phaser.Game {
 }
 
 new Game(config);
-
-module['hot'].accept();
