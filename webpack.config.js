@@ -5,6 +5,7 @@ const phaser = path.join(pathToPhaser, 'dist/phaser.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const chokidar = require("chokidar");
 
 module.exports = {
   entry: './src/game.ts',
@@ -20,7 +21,29 @@ module.exports = {
     port: 8080,
     open: true,
     hot: true,
-    compress: true
+    compress: true,
+    before(app, server) {
+      const files = [
+        // Refreshing files
+        "**/*.ts",
+        "**/*.js",
+        "**/*.html"
+      ];
+      chokidar
+        .watch(files, {
+          alwaysStat: true,
+          atomic: false,
+          followSymlinks: false,
+          ignoreInitial: true,
+          ignorePermissionErrors: true,
+          interval: 1000,
+          persistent: true,
+          usePolling: true
+        })
+        .on("all", () => {
+          server.sockWrite(server.sockets, "content-changed");
+        });
+    }
   },
   resolve: {
     extensions: ['.ts', '.js'],

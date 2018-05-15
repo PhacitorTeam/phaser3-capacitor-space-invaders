@@ -44,6 +44,7 @@ export class Game extends Phaser.Game {
     this.scene.start('Boot');
 
     console.log(Capacitor.platform);
+    console.log('hola2');
     if ((Capacitor.platform === 'ios') || (Capacitor.platform === 'android')) {
       StatusBar.hide();
       SplashScreen.hide();
