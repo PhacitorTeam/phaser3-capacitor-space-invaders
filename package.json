@@ -10,7 +10,6 @@
     "Webpack"
   ],
   "devDependencies": {
-    "chokidar": "^2.0.3",
     "clean-webpack-plugin": "^0.1.19",
     "expose-loader": "^0.7.5",
     "html-loader": "^0.5.5",
@@ -30,6 +29,7 @@
     "copy": "cp -fR assets dist && cp src/service-worker.js dist/service-worker.js && cp src/manifest.json dist/manifest.json && cp sw-toolbox.js dist/sw-toolbox.js",
     "dev": "webpack --mode development && npm run copy && webpack-dev-server --progress --colors --watch-poll",
     "prod": "webpack --mode production && npm run copy",
+    "build": "webpack --mode production && npm run copy && npx cap copy",
     "start": "webpack-dev-server --inline --progress --colors --watch-poll",
     "watch": "webpack --mode development -w"
   }
