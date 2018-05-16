@@ -22,6 +22,7 @@ tmp/
 temp/
 hooks/
 www/
+dist/
 $RECYCLE.BIN/
 
 .DS_Store
